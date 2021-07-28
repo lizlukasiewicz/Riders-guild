@@ -10,8 +10,10 @@ export default NextAuth({
       server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
     }),
-    // Temporarily removing the Apple provider from the demo site as the
-    // callback URL for it needs updating due to Vercel changing domains
+    Providers.GitHub({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET
+    }),
   ],
   // Database optional. MySQL, Maria DB, Postgres and MongoDB are supported.
   // https://next-auth.js.org/configuration/databases
@@ -19,7 +21,7 @@ export default NextAuth({
   // Notes:
   // * You must install an appropriate node_module for your database
   // * The Email provider requires a database (OAuth providers do not)
-  database: process.env.MONGODB_URI,
+  database: process.env.DATABASE_URL,
 
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
@@ -61,10 +63,10 @@ export default NextAuth({
   // pages is not specified for that route.
   // https://next-auth.js.org/configuration/pages
   pages: {
-    // signIn: '/auth/signin',  // Displays signin buttons
-    // signOut: '/auth/signout', // Displays form with sign out button
+    //signIn: '/auth/signin',  // Displays signin buttons
+    //signOut: '/auth/signout', // Displays form with sign out button
     // error: '/auth/error', // Error code passed in query string as ?error=
-    // verifyRequest: '/auth/verify-request', // Used for check email page
+    //verifyRequest: '/auth/verify-request', // Used for check email page
     // newUser: null // If set, new users will be directed here on first sign in
   },
 

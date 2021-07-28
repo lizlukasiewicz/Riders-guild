@@ -1,55 +1,44 @@
 import Head from 'next/head'
 import { connectToDatabase } from '../lib/mongodb'
+import Layout from '../components/layout'
+import Link from 'next/link'
+
 
 export default function Home({ isConnected }) {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Rider Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+    <Layout>
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
-        </h1>
-
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
-            for instructions.
-          </h2>
-        )}
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+      <h1 className="title">The Riders Guild</h1>
+      <h2 className="subtitle"> All Gears Welcomed </h2>
 
         <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
+          <a className="card">
+          <Link href="/forum" >
+            <h3>Search our Forum &rarr;</h3>
+          </Link>
+            <p>Join discussions, start a new thread, leave comments or reviews</p>
           </a>
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          <a className="card">
+            <Link href="/marketplace">
+            <h3>Marketplace &rarr;</h3>
+            </Link>
+            <p>Post or Purchase full bikes, parts, gear, and tools</p>
           </a>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
+          <a className="card">
+            <Link href="/profile">
+            <h3>Profile &rarr;</h3>
+            </Link>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
+          <a className="card">
             <h3>Deploy &rarr;</h3>
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
@@ -57,20 +46,21 @@ export default function Home({ isConnected }) {
           </a>
         </div>
       </main>
+      <div>
+
+      </div>
+      </Layout>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
+          <img src="/yubaba.png" alt="Yubaba Logo" className="logo" />
       </footer>
 
       <style jsx>{`
         .container {
+          background-image: url("bikeguildbackground.jpeg");
+          background-size: cover;
+          background-repeat: no-repeat;
           min-height: 100vh;
           padding: 0 0.5rem;
           display: flex;
@@ -91,6 +81,7 @@ export default function Home({ isConnected }) {
         footer {
           width: 100%;
           height: 100px;
+          background-color: rgba(82, 97, 112, 0.541);
           border-top: 1px solid #eaeaea;
           display: flex;
           justify-content: center;
@@ -153,6 +144,7 @@ export default function Home({ isConnected }) {
         }
 
         .grid {
+          background-color: rgba(237, 238, 231, 0.774);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -163,6 +155,7 @@ export default function Home({ isConnected }) {
         }
 
         .card {
+          background-color: rgba(79, 97, 116, 0.302);
           margin: 1rem;
           flex-basis: 45%;
           padding: 1.5rem;
@@ -173,7 +166,6 @@ export default function Home({ isConnected }) {
           border-radius: 10px;
           transition: color 0.15s ease, border-color 0.15s ease;
         }
-
         .card:hover,
         .card:focus,
         .card:active {
@@ -193,7 +185,7 @@ export default function Home({ isConnected }) {
         }
 
         .logo {
-          height: 1em;
+          height: 3em;
         }
 
         @media (max-width: 600px) {
