@@ -14,7 +14,7 @@ export default function Home({ isConnected }) {
     <Layout>
       <main>
       <h1 className="title">The Riders Guild</h1>
-      <h2 className="subtitle"> All Gears Welcomed </h2>
+      <h2 className="subtitle"> All Gears Welcomed  </h2>
 
         <div className="grid">
           <a className="card">
@@ -41,13 +41,13 @@ export default function Home({ isConnected }) {
           <a className="card">
             <h3>Deploy &rarr;</h3>
             <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+              This is an empty link because I dont know what to put here.
             </p>
           </a>
         </div>
       </main>
       <div>
-
+        <img src="/cyclist.gif" alt="cyclist gif"/>
       </div>
       </Layout>
 
