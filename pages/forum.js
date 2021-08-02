@@ -10,7 +10,7 @@ export default function Forum ({customers}) {
   // This is possible because of the shared context configured in `_app.js` that
   // is used by `useSession()`.
   const [ session, loading ] = useSession()
-
+  console.log(customers)
   return (
         <div className="container">
           <Head>
@@ -153,16 +153,24 @@ export default function Forum ({customers}) {
 // Export the `session` prop to use sessions with Server Side Rendering
 export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
-  const customers = await db
-        .collection("customers")
-        .find({})
-        .sort({ metacritic: -1 })
-        .limit(5)
-        .toArray();
+  const data = await db.collection("customers").find({}).limit(20).toArray();
+  const customers = JSON.parse(JSON.stringify(data))
+  const filtered = customers.map(customer => {
+    const reviews = JSON.parse(JSON.stringify(customer.reviews))
+    return{
+      firstname: customer.firstname,
+      location: customer.location,
+      username: reviews.username,
+      comment: reviews.comment
+    }
+  })
+  console.log(customers)
   return {
     props: {
-      session: await getSession(context),
-      customers: JSON.parse(JSON.stringify(customers))
+      
+      customers: {customers : properties}
     }
   }
 }
+//.sort({ metacritic: -1 })
+//session: await getSession(context),
